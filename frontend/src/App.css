@@ -1,0 +1,82 @@
+.App {
+  text-align: center;
+  background-color: white;
+  min-height: 100vh;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-family: "Savate", sans-serif;
+  margin: 20px;
+}
+
+button {
+  background-color: #c4d9ff;
+  border: 2px solid #2c2a37;
+  border-radius: 10px;
+  font-family: "Savate", sans-serif;
+  font-weight: 500;
+  padding: 8px;
+  margin: 5px;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
+  font-size: 15px;
+}
+
+button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  filter: brightness(1.1);
+  transition: 0.3s ease;
+}
+
+h1 {
+  align-self: center;
+}
+
+.top-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.select-drop select {
+  margin: 20px;
+  padding: 6px;
+  font-family: "Savate", sans-serif;
+  background-color: #fef9d9;
+  font-weight: 500;
+  box-sizing: border-box;
+  border: 2px solid #2c2a37;
+  border-radius: 6px;
+  outline: none;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.select-drop select:hover {
+  cursor: pointer;
+  filter: brightness(1.1);
+  transition: 0.3s ease;
+}
+#new-board {
+  background-color: #c5baff;
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  float: bottom;
+  background-color: #a1e3f9;
+}
+footer h4 {
+  color: black;
+  margin-right: 10px;
+  font-size: large;
+  font-family: "Brush Script MT", cursive;
+}
