@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 3000;
 const boardRoutes = require("./routes/boards");
 
 app.use("/boards", boardRoutes);
+app.use("/posts", require("./routes/posts"));
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

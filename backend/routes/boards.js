@@ -4,8 +4,11 @@ const prisma = new PrismaClient();
 const express = require("express");
 const { BadParams, DoesNotExist } = require("../middleware/CustomErrors");
 const router = express.Router();
-
 const app = express();
+app.use(express.json());
+
+const postRoutes = require("./posts");
+app.use("/:boardId/post", postRoutes);
 
 router.get("/:boardId", async (req, res, next) => {
   const boardId = parseInt(req.params.boardId);
@@ -25,7 +28,7 @@ router.get("/:boardId", async (req, res, next) => {
 
 // create new board
 router.post("/", async (req, res, next) => {
-  const { title, category, author } = req.body;
+  const { title, category, author, imageURL } = req.body;
   if (title == null || category == null) {
     next(new BadParams("You must include a title and category"));
   }
@@ -34,6 +37,7 @@ router.post("/", async (req, res, next) => {
       title,
       category,
       author,
+      imageURL,
     },
   });
   res.status(201).json(board);
@@ -52,6 +56,48 @@ router.delete("/:boardId", async (req, res, next) => {
   res.json(deletedBoard);
 });
 
+// Create a post wihtin a Board:
+router.post("/:boardId", async (req, res, next) => {
+  const boardId = parseInt(req.params.boardId);
+  if (boardId == null) {
+    next(
+      new DoesNotExist("This ID does not exist, so we cannot add to its posts")
+    );
+  }
+  const { author, imageURL, title, description } = req.body;
+  if (imageURL == null || title == null || description == null) {
+    next(new BadParams("you must defined a GIF, title, and description"));
+  }
+  const post = await prisma.card.create({
+    data: {
+      author,
+      imageURL,
+      upvotes: 0,
+      boardId,
+      title,
+      description,
+    },
+  });
+  res.json(post);
+});
+
+// populate boards
+
+router.get("/:boardId/posts", async (req, res) => {
+  const boardId = parseInt(req.params.boardId);
+  if (boardId == null) {
+    next(
+      new DoesNotExist("This ID does not exist and thus cannot be displayed")
+    );
+  }
+  const cards = await prisma.card.findMany({
+    where: {
+      boardId: boardId, // Replace 99 with the actual ID you want to retrieve
+    },
+  });
+  res.json(cards);
+});
+
 // GET ALL Boards:
 
 router.get("/", async (req, res) => {
@@ -67,3 +113,5 @@ app.use((err, req, res, next) => {
 });
 
 module.exports = router;
+
+//

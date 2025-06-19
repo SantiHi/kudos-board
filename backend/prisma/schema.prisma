@@ -19,11 +19,17 @@ model Board {
   title    String
   category String
   author   String
+  imageURL String 
   cards    Card[]
 }
 
 model Card {
-  id      Int   @id @default(autoincrement())
-  boardId Int
-  board   Board @relation(fields: [boardId], references: [id])
+  id          Int   @id @default(autoincrement())
+  author      String 
+  imageURL    String 
+  upvotes     Int 
+  boardId     Int
+  title       String 
+  description String 
+  board       Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
 }
