@@ -5,7 +5,6 @@ import Board from "./Board.jsx";
 import { useState } from "react";
 
 const INIITIAL_STATE = 0;
-const INIITIAL_NAME = "Title";
 
 const App = () => {
   const [currentBoardID, setCurrentBoardID] = useState(INIITIAL_STATE);
@@ -25,12 +24,7 @@ const App = () => {
         />
         <Route
           path="/boards/:boardId"
-          element={
-            <Board
-              currentBoardID={currentBoardID}
-              currentBoardName={currentBoardName}
-            />
-          }
+          element={<Board currentBoardName={currentBoardName} />}
         />
       </Routes>
     </BrowserRouter>

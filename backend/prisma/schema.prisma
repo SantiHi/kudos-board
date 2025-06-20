@@ -21,6 +21,7 @@ model Board {
   author   String
   imageURL String 
   cards    Card[]
+  createdAt DateTime @default(now())
 }
 
 model Card {
@@ -32,4 +33,5 @@ model Card {
   title       String 
   description String 
   board       Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
 }

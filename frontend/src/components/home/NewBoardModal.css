@@ -19,6 +19,8 @@ main {
 .newBoard-details h2 {
   padding: 0px;
   margin: 10px;
+  font-size: 35px;
+  margin-bottom: 20px;
 }
 
 .newBoard-details p:hover {
@@ -39,8 +41,8 @@ main {
 .newBoard-details {
   animation: modalAnimation 0.5s forwards;
   position: fixed;
-  width: 300px;
-  height: 425px;
+  width: 500px;
+  height: 550px;
   z-index: 1000;
   border: 2px solid black;
   padding-inline: 20px;
@@ -65,11 +67,13 @@ main {
 }
 
 .newBoard-details textarea {
-  height: 15px;
+  height: 20px;
+  margin-top: 5px;
   width: 98%;
   resize: none;
   box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
   font-family: "Savate", sans-serif;
+  font-size: 15px;
 }
 
 .newBoard-details select {

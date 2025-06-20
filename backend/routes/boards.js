@@ -81,6 +81,50 @@ router.post("/:boardId", async (req, res, next) => {
   res.json(post);
 });
 
+// search for boards using author name / title name
+
+router.get("/query/:query", async (req, res, next) => {
+  const query = req.params.query;
+  const boards = await prisma.board.findMany({
+    where: {
+      OR: [
+        {
+          title: { startsWith: query },
+        },
+        {
+          author: { startsWith: query },
+        },
+      ],
+    },
+  });
+  res.json(boards);
+});
+
+// get boards based on category
+router.get("/category/:category", async (req, res) => {
+  const checkCategory = req.params.category;
+  if (checkCategory === "all") {
+    res.json(await prisma.board.findMany());
+  }
+  if (checkCategory === "recent") {
+    res.json(
+      await prisma.board.findMany({
+        orderBy: {
+          createdAt: "desc",
+        },
+        take: 6,
+      })
+    );
+  } else {
+    const boards = await prisma.board.findMany({
+      where: {
+        category: checkCategory,
+      },
+    });
+    res.json(boards);
+  }
+});
+
 // populate boards
 
 router.get("/:boardId/posts", async (req, res) => {
@@ -91,10 +135,14 @@ router.get("/:boardId/posts", async (req, res) => {
     );
   }
   const cards = await prisma.card.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
     where: {
       boardId: boardId, // Replace 99 with the actual ID you want to retrieve
     },
   });
+
   res.json(cards);
 });
 
