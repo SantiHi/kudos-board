@@ -1,5 +1,6 @@
 import "./BoardCard.css";
 import { useState } from "react";
+import { BASE_URL } from "../../utils/reused";
 
 import pushPin from "../../assets/push-pin.svg";
 
@@ -13,7 +14,7 @@ const BoardCard = ({
   setPostId,
 }) => {
   const makePinned = async () => {
-    const response = await fetch(`http://localhost:3000/posts/${id}/pin`, {
+    const response = await fetch(`${BASE_URL}/posts/${id}/pin`, {
       method: "PUT",
     });
     const data = await response.json();
@@ -21,7 +22,7 @@ const BoardCard = ({
   };
 
   const addLikes = async () => {
-    const response = await fetch(`http://localhost:3000/posts/${id}`, {
+    const response = await fetch(`${BASE_URL}/posts/${id}`, {
       method: "PUT",
     });
     const data = await response.json();
@@ -30,7 +31,7 @@ const BoardCard = ({
   };
 
   const handleDelete = async () => {
-    const response = await fetch(`http://localhost:3000/posts/${id}`, {
+    const response = await fetch(`${BASE_URL}/posts/${id}`, {
       method: "DELETE",
     });
     const data = await response.json();

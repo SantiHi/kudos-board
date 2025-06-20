@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./CreatePostModal.css";
 import { useParams } from "react-router-dom";
+import { BASE_URL } from "../../utils/reused";
 
 const apiKey = import.meta.env.VITE_GIPHY_KEY;
 const DEFAULT_GIF = "Enter GIF URL";
@@ -43,6 +44,10 @@ const CreatePostModal = ({ setCreatePostVisibility, setReload }) => {
   };
 
   const handleCreateBoard = (event) => {
+    if (formData.description == "" || formData.imageURL == "") {
+      alert("Ensure that Post text and a GIF are selected");
+      return;
+    }
     event.preventDefault();
     setCreatePostVisibility(false);
     console.log(formData);
@@ -52,7 +57,7 @@ const CreatePostModal = ({ setCreatePostVisibility, setReload }) => {
 
   const addcreatePost = async () => {
     console.log(JSON.stringify(formData));
-    const response = await fetch(`http://localhost:3000/boards/${boardId}`, {
+    const response = await fetch(`${BASE_URL}/boards/${boardId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -133,9 +138,11 @@ const CreatePostModal = ({ setCreatePostVisibility, setReload }) => {
             ></textarea>
           </div>
         </form>
-        <button id="new-board" onClick={(event) => handleCreateBoard(event)}>
-          Create Post
-        </button>
+        {
+          <button id="new-board" onClick={(event) => handleCreateBoard(event)}>
+            Create Post
+          </button>
+        }
       </div>
     </div>
   );

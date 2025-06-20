@@ -4,13 +4,14 @@ import { useParams } from "react-router-dom";
 import BoardList from "./components/board/BoardList";
 import CreatePostModal from "./components/board/CreatePostModal";
 import CommentModal from "./components/board/CommentModal";
+import { BASE_URL } from "./utils/reused";
 
 import { useNavigate } from "react-router-dom";
 
 const INIT_RELOAD = 0;
 const INIT_ID = 1;
 
-const Board = ({ currentBoardName }) => {
+const Board = ({ currentBoardName, toggled, setToggled }) => {
   const [visibleCards, setVisibleCards] = useState([]);
   const [reload, setReload] = useState(INIT_RELOAD);
   const [boardName, setBoardName] = useState("Title");
@@ -21,10 +22,14 @@ const Board = ({ currentBoardName }) => {
   const { boardId } = useParams();
 
   const getName = async () => {
-    const response = await fetch(`http://localhost:3000/boards/${boardId}`);
+    const response = await fetch(`${BASE_URL}/boards/${boardId}`);
     const data = await response.json();
     setBoardName(data.title);
   };
+
+  useEffect(() => {
+    document.body.classList.toggle("toggled", toggled); // between light and dark mode
+  }, [toggled]);
 
   useEffect(() => {
     getName();
@@ -32,9 +37,7 @@ const Board = ({ currentBoardName }) => {
 
   useEffect(() => {
     const getCards = async () => {
-      const response = await fetch(
-        `http://localhost:3000/boards/${boardId}/posts`
-      );
+      const response = await fetch(`${BASE_URL}/boards/${boardId}/posts`);
       const data = await response.json();
       setVisibleCards(data);
       console.log(data);
@@ -49,10 +52,16 @@ const Board = ({ currentBoardName }) => {
       <button
         className="arrow"
         onClick={() => {
-          navigate("/home");
+          navigate("/");
         }}
       >
         ←
+      </button>
+      <button
+        className={`toggle-btn ${toggled ? "toggled" : ""}`}
+        onClick={() => setToggled(!toggled)}
+      >
+        <div className="thumb"> </div>
       </button>
       <header>
         <h1>Kudos Board</h1>

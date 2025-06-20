@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./CommentModal.css";
 import { useParams } from "react-router-dom";
+import { BASE_URL } from "../../utils/reused";
 
 const DEFAULT_COMMENT = "ex: such a cool post!";
 const DEFAULT_LOAD = 0;
@@ -14,7 +15,7 @@ const CommentModal = ({ setCommentModalVisibility, setReload, postId }) => {
 
   useEffect(() => {
     const getComments = async () => {
-      const response = await fetch(`http://localhost:3000/posts/${postId}`);
+      const response = await fetch(`${BASE_URL}/posts/${postId}`);
       const data = await response.json();
       setAllComments(data);
       if ((await data) != null) {
@@ -25,17 +26,18 @@ const CommentModal = ({ setCommentModalVisibility, setReload, postId }) => {
   }, [loadComments]);
 
   const newComment = async (event) => {
+    if (comment == "") {
+      alert("Please do not leave comment empty");
+      return;
+    }
     event.preventDefault();
-    const response = await fetch(
-      `http://localhost:3000/posts/${postId}/comment`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ author: author, comment }),
-      }
-    );
+    const response = await fetch(`${BASE_URL}/posts/${postId}/comment`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ author: author, comment }),
+    });
     setComment("");
     setLoadComments((self) => self + 1);
   };
