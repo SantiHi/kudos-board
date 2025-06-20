@@ -89,10 +89,10 @@ router.get("/query/:query", async (req, res, next) => {
     where: {
       OR: [
         {
-          title: { startsWith: query },
+          title: { contains: query, mode: "insensitive" },
         },
         {
-          author: { startsWith: query },
+          author: { contains: query, mode: "insensitive" },
         },
       ],
     },
