@@ -32,6 +32,9 @@ const NewBoardModal = ({ setNewBoardModalVisibility, setReload }) => {
   };
 
   const handleCreateBoard = (event) => {
+    if (formData.title === "") {
+      return;
+    }
     event.preventDefault();
     setNewBoardModalVisibility(false);
     console.log(formData);
@@ -72,6 +75,7 @@ const NewBoardModal = ({ setNewBoardModalVisibility, setReload }) => {
                 name="title"
                 placeholder="Name of Board"
                 onChange={handleChange}
+                required
               ></textarea>
             </label>
           </div>
@@ -79,7 +83,7 @@ const NewBoardModal = ({ setNewBoardModalVisibility, setReload }) => {
             <label name="dropdown">
               {" "}
               Category
-              <select value={category} onChange={handleDropChange}>
+              <select value={category} onChange={handleDropChange} required>
                 <option value={ModalOptions.CATEGORY}>Select a category</option>
                 <option value={ModalOptions.CELEBRATION}>Celebration</option>
                 <option value={ModalOptions.THANK_YOU}>Thank You</option>
@@ -110,9 +114,15 @@ const NewBoardModal = ({ setNewBoardModalVisibility, setReload }) => {
             </label>
           </div>
         </form>
-        <button id="new-board" onClick={(event) => handleCreateBoard(event)}>
-          Create Board
-        </button>
+        {formData.title != "" && (
+          <button
+            id="new-board"
+            type="submit"
+            onClick={(event) => handleCreateBoard(event)}
+          >
+            Create Board
+          </button>
+        )}
       </div>
     </div>
   );
