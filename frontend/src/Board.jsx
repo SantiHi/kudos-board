@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import BoardList from "./components/board/BoardList";
 import CreatePostModal from "./components/board/CreatePostModal";
 import CommentModal from "./components/board/CommentModal";
+import { BASE_URL } from "./utils/reused";
 
 import { useNavigate } from "react-router-dom";
 
@@ -21,7 +22,7 @@ const Board = ({ currentBoardName }) => {
   const { boardId } = useParams();
 
   const getName = async () => {
-    const response = await fetch(`http://localhost:3000/boards/${boardId}`);
+    const response = await fetch(`${BASE_URL}/boards/${boardId}`);
     const data = await response.json();
     setBoardName(data.title);
   };
@@ -32,9 +33,7 @@ const Board = ({ currentBoardName }) => {
 
   useEffect(() => {
     const getCards = async () => {
-      const response = await fetch(
-        `http://localhost:3000/boards/${boardId}/posts`
-      );
+      const response = await fetch(`${BASE_URL}/boards/${boardId}/posts`);
       const data = await response.json();
       setVisibleCards(data);
       console.log(data);
