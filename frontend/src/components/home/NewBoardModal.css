@@ -40,7 +40,7 @@ main {
   animation: modalAnimation 0.5s forwards;
   position: fixed;
   width: 300px;
-  height: 400px;
+  height: 425px;
   z-index: 1000;
   border: 2px solid black;
   padding-inline: 20px;
@@ -93,6 +93,7 @@ main {
   align-self: center;
   background-color: #c5baff;
   margin-top: 25px;
+  margin-bottom: 20px;
 }
 
 .newBoard-details select {

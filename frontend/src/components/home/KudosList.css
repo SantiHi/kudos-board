@@ -1,0 +1,7 @@
+.kudos-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-inline: 30px;
+  justify-content: center;
+}

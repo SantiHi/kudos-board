@@ -1,0 +1,69 @@
+.board-card {
+  border: 2px solid rgb(125, 105, 105);
+  width: 200px;
+  height: 350px;
+  margin: 20px;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px 2px rgba(119, 130, 132, 0.8);
+}
+
+.board-card img {
+  max-width: 175px;
+  height: 200px;
+}
+
+.board-card:hover {
+  transform: scale(1.03);
+  transition: 0.3s ease;
+  border: 2px solid rgba(105, 131, 136, 0.8);
+}
+
+h2 {
+  width: 100%;
+  font-family: "Savate", sans-serif;
+  margin: 0;
+  height: 30px;
+  color: black;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  margin-bottom: 10px;
+  text-align: center;
+  margin: auto;
+}
+
+p {
+  font-family: "Savate", sans-serif;
+  margin: 0;
+}
+
+.board-card .card-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  width: 100%;
+}
+
+.card-buttons #delete {
+  background-color: #e78f81;
+  padding-inline: 10%;
+}
+
+.card-buttons #view {
+  background-color: #80d8c3;
+  padding-inline: 10%;
+}
+
+img {
+  width: 100%;
+}

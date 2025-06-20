@@ -8,12 +8,15 @@ const ModalOptions = Object.freeze({
   INSPIRATION: "inspiration",
 });
 
+const DEFAULT_GIF = "https://i.gifer.com/4j.gif";
+
 const NewBoardModal = ({ setNewBoardModalVisibility }) => {
   const [category, setCategory] = useState(ModalOptions.CATEGORY);
   const [formData, setFormData] = useState({
     title: "",
     category: "",
     author: "",
+    imageURL: "",
   });
 
   const handleChange = (event) => {
@@ -34,6 +37,7 @@ const NewBoardModal = ({ setNewBoardModalVisibility }) => {
     addNewBoard();
   };
   const addNewBoard = async () => {
+    console.log(JSON.stringify(formData));
     const response = await fetch("http://localhost:3000/boards", {
       method: "POST",
       headers: {
@@ -56,31 +60,51 @@ const NewBoardModal = ({ setNewBoardModalVisibility }) => {
       >
         <p onClick={() => setNewBoardModalVisibility(false)}>X</p>
         <h2>New Board</h2>
-        <form name="new-board">
+        <form name="new-board" id="bob">
           <div className="form-block">
-            <label name="title"> Title</label>
-            <textarea
-              name="title"
-              placeholder="Name of Board"
-              onChange={handleChange}
-            ></textarea>
+            <label name="title">
+              {" "}
+              Title
+              <textarea
+                name="title"
+                placeholder="Name of Board"
+                onChange={handleChange}
+              ></textarea>
+            </label>
           </div>
           <div className="form-block">
-            <label name="dropdown"> Category</label>
-            <select value={category} onChange={handleDropChange}>
-              <option value={ModalOptions.CATEGORY}>Select a category</option>
-              <option value={ModalOptions.CELEBRATION}>Celebration</option>
-              <option value={ModalOptions.THANK_YOU}>Thank You</option>
-              <option value={ModalOptions.INSPIRATION}>Inspiration</option>
-            </select>
+            <label name="dropdown">
+              {" "}
+              Category
+              <select value={category} onChange={handleDropChange}>
+                <option value={ModalOptions.CATEGORY}>Select a category</option>
+                <option value={ModalOptions.CELEBRATION}>Celebration</option>
+                <option value={ModalOptions.THANK_YOU}>Thank You</option>
+                <option value={ModalOptions.INSPIRATION}>Inspiration</option>
+              </select>
+            </label>
           </div>
           <div className="form-block">
-            <label value="author"> Author </label>
-            <textarea
-              name="author"
-              placeholder="Name"
-              onChange={handleChange}
-            ></textarea>
+            <label value="author">
+              {" "}
+              Author
+              <textarea
+                name="author"
+                placeholder="Name"
+                onChange={handleChange}
+              ></textarea>{" "}
+            </label>
+          </div>
+          <div className="form-block">
+            <label value="url">
+              {" "}
+              Image URL
+              <textarea
+                name="imageURL"
+                placeholder={DEFAULT_GIF}
+                onChange={handleChange}
+              ></textarea>
+            </label>
           </div>
         </form>
         <button id="new-board" onClick={(event) => handleCreateBoard(event)}>
