@@ -27,7 +27,13 @@ const App = () => {
         />
         <Route
           path="/boards/:boardId"
-          element={<Board currentBoardName={currentBoardName} />}
+          element={
+            <Board
+              currentBoardName={currentBoardName}
+              setToggled={setToggled}
+              toggled={toggled}
+            />
+          }
         />
       </Routes>
     </BrowserRouter>

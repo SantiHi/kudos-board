@@ -42,6 +42,11 @@ header {
   background-color: bisque;
 }
 
+.toggle-btn {
+  position: fixed;
+  top: 3%;
+}
+
 .arrow:hover {
   cursor: pointer;
   transform: scale(1.1);

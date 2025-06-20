@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 const INIT_RELOAD = 0;
 const INIT_ID = 1;
 
-const Board = ({ currentBoardName }) => {
+const Board = ({ currentBoardName, toggled, setToggled }) => {
   const [visibleCards, setVisibleCards] = useState([]);
   const [reload, setReload] = useState(INIT_RELOAD);
   const [boardName, setBoardName] = useState("Title");
@@ -26,6 +26,10 @@ const Board = ({ currentBoardName }) => {
     const data = await response.json();
     setBoardName(data.title);
   };
+
+  useEffect(() => {
+    document.body.classList.toggle("toggled", toggled); // between light and dark mode
+  }, [toggled]);
 
   useEffect(() => {
     getName();
@@ -52,6 +56,12 @@ const Board = ({ currentBoardName }) => {
         }}
       >
         ←
+      </button>
+      <button
+        className={`toggle-btn ${toggled ? "toggled" : ""}`}
+        onClick={() => setToggled(!toggled)}
+      >
+        <div className="thumb"> </div>
       </button>
       <header>
         <h1>Kudos Board</h1>
