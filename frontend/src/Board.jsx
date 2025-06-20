@@ -48,7 +48,7 @@ const Board = ({ currentBoardName }) => {
       <button
         className="arrow"
         onClick={() => {
-          navigate("/home");
+          navigate("/");
         }}
       >
         ←
