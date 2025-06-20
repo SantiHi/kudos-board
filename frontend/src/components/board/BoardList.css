@@ -1,4 +1,5 @@
-.kudos-list {
+.kudos-list,
+.pinned-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

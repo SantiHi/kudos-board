@@ -3,42 +3,87 @@ import "./Home.css";
 import SearchBar from "./components/home/SearchBar.jsx";
 import NewBoardModal from "./components/home/NewBoardModal.jsx";
 import KudosList from "./components/home/KudosList.jsx";
+import { getAllBoards } from "./utils/reusedFunctions.js";
 
-const Home = ({ setCurrentBoardID, setCurrentBoardName }) => {
+const ModalOptions = Object.freeze({
+  ALL: "all",
+  RECENT: "recent",
+  CELEBRATION: "celebration",
+  THANK_YOU: "thank-you",
+  INSPIRATION: "inspiration",
+});
+
+const INIT_RELOAD = 0;
+
+const Home = ({
+  setCurrentBoardID,
+  setCurrentBoardName,
+  setToggled,
+  toggled,
+}) => {
   const [isNewBoardModalVisible, setNewBoardModalVisibility] = useState(false);
   const [visibleBoards, setVisibleBoards] = useState([]);
+  const [reload, setReload] = useState(INIT_RELOAD);
 
-  const getBoards = useCallback(async () => {
+  const getBoards = async () => {
     const response = await fetch("http://localhost:3000/boards");
     const data = await response.json();
     setVisibleBoards(data);
-  });
+  };
+
+  async function handleSortChange(event) {
+    event.preventDefault();
+    const response = await fetch(
+      `http://localhost:3000/boards/category/${event.target.value}`
+    );
+    const data = await response.json();
+    setVisibleBoards(data);
+    console.log(data);
+  }
 
   useEffect(() => {
     getBoards();
-  }, [getBoards]);
+  }, [reload]);
+
+  useEffect(() => {
+    document.body.classList.toggle("toggled", toggled); // between light and dark mode
+  }, [toggled]);
 
   return (
     <div className="Home">
       <header>
+        <button
+          className={`toggle-btn ${toggled ? "toggled" : ""}`}
+          onClick={() => setToggled(!toggled)}
+        >
+          <div className="thumb"> </div>
+        </button>
         <h1>Kudos Board</h1>
       </header>
 
       {isNewBoardModalVisible && (
         <NewBoardModal
           setNewBoardModalVisibility={setNewBoardModalVisibility}
+          setReload={setReload}
         />
       )}
-      <main>
+      <main className={`main ${toggled ? "toggled" : ""}`}>
         <div className="top-container">
-          <SearchBar />
+          <SearchBar
+            setVisibleBoards={setVisibleBoards}
+            getAllBoards={getBoards}
+          />
           <div className="select-drop">
-            <select name="seach-form" className="select-drop">
-              <option value="Sort">All</option>
-              <option value="alphabetic">Recent</option>
-              <option value="date-released">Celebration</option>
-              <option value="rating">Thank You</option>
-              <option value="rating">Inspiration </option>
+            <select
+              name="seach-form"
+              className="select-drop"
+              onChange={handleSortChange}
+            >
+              <option value={ModalOptions.ALL}>All</option>
+              <option value={ModalOptions.RECENT}>Recent</option>
+              <option value={ModalOptions.CELEBRATION}>Celebration</option>
+              <option value={ModalOptions.THANK_YOU}>Thank You</option>
+              <option value={ModalOptions.INSPIRATION}>Inspiration</option>
             </select>
             <button id="new-board" onClick={setNewBoardModalVisibility}>
               Create New Board
@@ -50,6 +95,7 @@ const Home = ({ setCurrentBoardID, setCurrentBoardName }) => {
             visibleBoards={visibleBoards}
             setCurrentBoardID={setCurrentBoardID}
             setCurrentBoardName={setCurrentBoardName}
+            setReload={setReload}
           />
         </div>
       </main>

@@ -3,16 +3,32 @@ import { useState, useCallback, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import BoardList from "./components/board/BoardList";
 import CreatePostModal from "./components/board/CreatePostModal";
+import CommentModal from "./components/board/CommentModal";
 
 import { useNavigate } from "react-router-dom";
 
 const INIT_RELOAD = 0;
+const INIT_ID = 1;
 
 const Board = ({ currentBoardName }) => {
   const [visibleCards, setVisibleCards] = useState([]);
   const [reload, setReload] = useState(INIT_RELOAD);
+  const [boardName, setBoardName] = useState("Title");
+  const [isCreatePostVisible, setCreatePostVisibility] = useState(false);
+  const [isCommentModalVisible, setCommentModalVisibility] = useState(false);
+  const [postId, setPostId] = useState(INIT_ID);
 
   const { boardId } = useParams();
+
+  const getName = async () => {
+    const response = await fetch(`http://localhost:3000/boards/${boardId}`);
+    const data = await response.json();
+    setBoardName(data.title);
+  };
+
+  useEffect(() => {
+    getName();
+  }, []);
 
   useEffect(() => {
     const getCards = async () => {
@@ -28,8 +44,6 @@ const Board = ({ currentBoardName }) => {
 
   const navigate = useNavigate();
 
-  const [isCreatePostVisible, setCreatePostVisibility] = useState(false);
-
   return (
     <div className="Board">
       <button
@@ -42,16 +56,32 @@ const Board = ({ currentBoardName }) => {
       </button>
       <header>
         <h1>Kudos Board</h1>
-        <h2> {currentBoardName ? currentBoardName : "Title"} </h2>
+        <h2 className="title-help"> {boardName} </h2>
         <button id="create" onClick={() => setCreatePostVisibility(true)}>
           Create Post
         </button>
       </header>
+      {isCommentModalVisible && (
+        <CommentModal
+          setCommentModalVisibility={setCommentModalVisibility}
+          setReload={setReload}
+          postId={postId}
+        />
+      )}
+
       {isCreatePostVisible && (
-        <CreatePostModal setCreatePostVisibility={setCreatePostVisibility} />
+        <CreatePostModal
+          setCreatePostVisibility={setCreatePostVisibility}
+          setReload={setReload}
+        />
       )}
       <main>
-        <BoardList visibleCards={visibleCards} setReload={setReload} />
+        <BoardList
+          visibleCards={visibleCards}
+          setReload={setReload}
+          setCommentModalVisibility={setCommentModalVisibility}
+          setPostId={setPostId}
+        />
       </main>
       <footer>
         <h4> © 2025 Santiago Criado |</h4>

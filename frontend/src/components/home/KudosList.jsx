@@ -5,6 +5,7 @@ const KudosList = ({
   visibleBoards,
   setCurrentBoardID,
   setCurrentBoardName,
+  setReload,
 }) => {
   return (
     <div>
@@ -16,6 +17,7 @@ const KudosList = ({
             id={board.id}
             setCurrentBoardID={setCurrentBoardID}
             setCurrentBoardName={setCurrentBoardName}
+            setReload={setReload}
           />
         ))}
       </div>

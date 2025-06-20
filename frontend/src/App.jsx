@@ -5,11 +5,11 @@ import Board from "./Board.jsx";
 import { useState } from "react";
 
 const INIITIAL_STATE = 0;
-const INIITIAL_NAME = "Title";
 
 const App = () => {
   const [currentBoardID, setCurrentBoardID] = useState(INIITIAL_STATE);
   const [currentBoardName, setCurrentBoardName] = useState(INIITIAL_STATE);
+  const [toggled, setToggled] = useState(false);
 
   return (
     <BrowserRouter>
@@ -20,17 +20,14 @@ const App = () => {
             <Home
               setCurrentBoardID={setCurrentBoardID}
               setCurrentBoardName={setCurrentBoardName}
+              setToggled={setToggled}
+              toggled={toggled}
             />
           }
         />
         <Route
           path="/boards/:boardId"
-          element={
-            <Board
-              currentBoardID={currentBoardID}
-              currentBoardName={currentBoardName}
-            />
-          }
+          element={<Board currentBoardName={currentBoardName} />}
         />
       </Routes>
     </BrowserRouter>

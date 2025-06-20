@@ -1,5 +1,6 @@
 .board-card {
   border: 2px solid rgb(125, 105, 105);
+  background-color: #f9fef3;
   width: 200px;
   height: 350px;
   margin: 20px;
@@ -13,6 +14,10 @@
   box-shadow: 0 0 5px 2px rgba(119, 130, 132, 0.8);
 }
 
+body.toggled .board-card {
+  background-color: rgb(21, 9, 42);
+}
+
 .board-card img {
   max-width: 175px;
   height: 200px;
@@ -24,20 +29,23 @@
   border: 2px solid rgba(105, 131, 136, 0.8);
 }
 
-h2 {
+.board-card h2 {
   width: 100%;
   font-family: "Savate", sans-serif;
   margin: 0;
-  height: 30px;
-  color: black;
+  height: 33px;
   text-overflow: ellipsis;
   display: -webkit-box;
   overflow: hidden;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-  margin-bottom: 10px;
+  margin-bottom: 13px;
   text-align: center;
   margin: auto;
+}
+
+body.toggled h2 {
+  color: white;
 }
 
 p {

@@ -10,7 +10,7 @@ const ModalOptions = Object.freeze({
 
 const DEFAULT_GIF = "https://i.gifer.com/4j.gif";
 
-const NewBoardModal = ({ setNewBoardModalVisibility }) => {
+const NewBoardModal = ({ setNewBoardModalVisibility, setReload }) => {
   const [category, setCategory] = useState(ModalOptions.CATEGORY);
   const [formData, setFormData] = useState({
     title: "",
@@ -36,6 +36,7 @@ const NewBoardModal = ({ setNewBoardModalVisibility }) => {
     console.log(formData);
     addNewBoard();
   };
+
   const addNewBoard = async () => {
     console.log(JSON.stringify(formData));
     const response = await fetch("http://localhost:3000/boards", {
@@ -47,6 +48,7 @@ const NewBoardModal = ({ setNewBoardModalVisibility }) => {
     });
     const data = await response.json();
     console.log(data);
+    setReload((self) => self + 1);
   };
 
   return (

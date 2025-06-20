@@ -11,34 +11,53 @@
   background-color: rgba(1, 0, 0, 0.4); /* Black w/ opacity */
 }
 
+.createPost-details2 img {
+  height: 47%;
+  width: 45%;
+  margin-inline: 4px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.gif-images {
+  height: 0;
+}
+.gif-images.active {
+  width: 100%;
+  height: 250px;
+  overflow: auto;
+}
+
 main {
   background-color: white;
   flex-grow: 1;
 }
 
-.createPost-details h2 {
-  padding: 0px;
+.createPost-overlay2 h2 {
+  padding: 20px;
+  font-size: 35px;
   margin: 10px;
 }
 
 #search-gifs {
   height: 30px;
   text-align: center;
-  padding: 5px;
+  font-size: 17px;
+  padding-top: 2px;
   margin-top: -4px;
   margin-right: 0;
   margin-inline: 10px;
   margin-bottom: -5px;
 }
 
-.createPost-details p:hover {
+.createPost-overlay2 p:hover {
   cursor: pointer;
   transform: scale(1.2);
   transition: 0.2s ease;
   font-weight: bold;
 }
 
-.createPost-details p {
+.createPost-overlay2 p {
   position: fixed;
   top: 5%;
   right: 0;
@@ -49,8 +68,8 @@ main {
 .createPost-details {
   animation: modalAnimation 0.5s forwards;
   position: fixed;
-  width: 300px;
-  height: 425px;
+  width: 500px;
+  height: 500px;
   z-index: 1000;
   border: 2px solid black;
   padding-inline: 20px;
@@ -62,57 +81,80 @@ main {
   align-items: center;
 }
 
-.createPost-details .form-block {
+body.toggled .createPost-details,
+body.toggled .createPost-details2 {
+  background-color: #260d25;
+  box-shadow: 0 0 5px 2px rgba(239, 243, 244, 0.8);
+}
+
+.createPost-details2 {
+  animation: modalAnimation 0.5s forwards;
+  position: fixed;
+  width: 500px;
+  height: 650px;
+  z-index: 1000;
+  border: 2px solid black;
+  padding-inline: 20px;
+  background-color: #feebf6;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.createPost-overlay2 .form-block {
   margin: 10px;
   display: flex;
   flex-direction: column;
 }
-
-.createPost-details #form-block-gif {
+.createPost-overlay2 #form-block-gif {
   display: flex;
   flex-direction: row;
   margin: 10px;
 }
 
-.createPost-details form {
+.createPost-overlay2 form {
   display: flex;
   width: 100%;
   flex-direction: column;
 }
-
-.createPost-details textarea {
-  height: 15px;
+.createPost-overlay2 textarea {
+  height: 20px;
   width: 98%;
+  font-size: 15px;
   resize: none;
   box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
   font-family: "Savate", sans-serif;
 }
 
-.createPost-details select {
+.createPost-overlay2 select {
   width: 100%;
   height: 25px;
   box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
 }
 
-.createPost-details label {
+.createPost-overlay2 label {
   font-weight: bold;
   margin-bottom: 6px;
 }
 
-.createPost-details h3 {
+.createPost-overlay2 h3 {
   font-size: 12px;
   padding: 0px;
   margin: 5px;
 }
 
-.createPost-details button {
+.createPost-overlay2 button {
   align-self: center;
   background-color: #c5baff;
   margin-top: 25px;
   margin-bottom: 20px;
+  padding: 10px;
+  font-size: 20px;
 }
 
-.createPost-details select {
+.createPost-overlay2 select {
   font-family: "Savate", sans-serif;
 }
 

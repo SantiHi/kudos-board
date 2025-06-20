@@ -1,6 +1,5 @@
 .Board {
   text-align: center;
-  background-color: white;
   min-height: 100vh;
   flex-grow: 1;
   display: flex;
@@ -20,6 +19,11 @@ header {
   justify-content: center;
   font-family: "Savate", sans-serif;
   margin: 20px;
+}
+
+.title-help {
+  margin: 10px;
+  margin-inline: auto;
 }
 
 .Board .arrow {
@@ -60,12 +64,6 @@ header {
   text-fill-color: transparent;
   background-size: 500% auto;
   animation: textShine 5s ease-in-out infinite alternate;
-  margin: 5px;
-}
-
-h2 {
-  margin: 0;
-  padding: 0;
 }
 
 @keyframes textShine {
