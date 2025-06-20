@@ -114,15 +114,17 @@ const NewBoardModal = ({ setNewBoardModalVisibility, setReload }) => {
             </label>
           </div>
         </form>
-        {formData.title != "" && (
-          <button
-            id="new-board"
-            type="submit"
-            onClick={(event) => handleCreateBoard(event)}
-          >
-            Create Board
-          </button>
-        )}
+        {formData.title != "" &&
+          formData.category !== ModalOptions.CATEGORY &&
+          formData.category != "" && (
+            <button
+              id="new-board"
+              type="submit"
+              onClick={(event) => handleCreateBoard(event)}
+            >
+              Create Board
+            </button>
+          )}
       </div>
     </div>
   );

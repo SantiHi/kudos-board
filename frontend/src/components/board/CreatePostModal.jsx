@@ -44,6 +44,10 @@ const CreatePostModal = ({ setCreatePostVisibility, setReload }) => {
   };
 
   const handleCreateBoard = (event) => {
+    if (formData.description == "" || formData.imageURL == "") {
+      alert("Ensure that Post text and a GIF are selected");
+      return;
+    }
     event.preventDefault();
     setCreatePostVisibility(false);
     console.log(formData);
@@ -134,9 +138,11 @@ const CreatePostModal = ({ setCreatePostVisibility, setReload }) => {
             ></textarea>
           </div>
         </form>
-        <button id="new-board" onClick={(event) => handleCreateBoard(event)}>
-          Create Post
-        </button>
+        {
+          <button id="new-board" onClick={(event) => handleCreateBoard(event)}>
+            Create Post
+          </button>
+        }
       </div>
     </div>
   );

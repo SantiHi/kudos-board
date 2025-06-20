@@ -51,6 +51,13 @@
   transition: 0.2s ease;
 }
 
+.comment-details p:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  font-weight: 1000;
+  transition: 0.2s ease;
+}
+
 .comment-details form {
   display: flex;
   width: 100%;

@@ -26,6 +26,10 @@ const CommentModal = ({ setCommentModalVisibility, setReload, postId }) => {
   }, [loadComments]);
 
   const newComment = async (event) => {
+    if (comment == "") {
+      alert("Please do not leave comment empty");
+      return;
+    }
     event.preventDefault();
     const response = await fetch(`${BASE_URL}/posts/${postId}/comment`, {
       method: "POST",
