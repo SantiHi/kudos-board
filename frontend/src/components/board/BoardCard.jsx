@@ -56,7 +56,10 @@ const BoardCard = ({
         </span>
         <h2>{card.title}</h2>
         <p>{card.description}</p>
-        <img src={card.imageURL ? card.imageURL : DEFAULT_GIF} />
+        <img
+          src={card.imageURL ? card.imageURL : DEFAULT_GIF}
+          alt="gif on a post card"
+        />
         <div className="post-buttons">
           <button id="view" onClick={addLikes}>
             {`Upvotes: ${card.upvotes}`}

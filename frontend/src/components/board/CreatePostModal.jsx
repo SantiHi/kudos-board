@@ -110,6 +110,7 @@ const CreatePostModal = ({ setCreatePostVisibility, setReload }) => {
               gifArray.map((image) => {
                 return (
                   <img
+                    alt="gif search results"
                     key={image.id}
                     src={image.images.downsized.url}
                     onClick={() => {

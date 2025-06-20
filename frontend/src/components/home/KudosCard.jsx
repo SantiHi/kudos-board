@@ -32,7 +32,10 @@ const KudosCard = ({
   return (
     <>
       <div className="board-card">
-        <img src={board.imageURL ? board.imageURL : DEFAULT_GIF} />
+        <img
+          src={board.imageURL ? board.imageURL : DEFAULT_GIF}
+          alt="funny gif or image"
+        />
         <h2>{board.title}</h2>
         <p>{board.category}</p>
         <div className="card-buttons">
