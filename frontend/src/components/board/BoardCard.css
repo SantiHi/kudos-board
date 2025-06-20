@@ -55,6 +55,7 @@ body.toggled .post-card {
 .post-card img {
   max-width: 80%;
   max-height: 180px;
+  object-fit: cover;
 }
 
 .post-card:hover {

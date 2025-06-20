@@ -19,8 +19,7 @@ body.toggled .board-card {
 }
 
 .board-card img {
-  max-width: 175px;
-  height: 200px;
+  object-fit: cover;
 }
 
 .board-card:hover {
@@ -74,4 +73,6 @@ p {
 
 img {
   width: 100%;
+  max-height: 180px;
+  object-fit: cover;
 }
