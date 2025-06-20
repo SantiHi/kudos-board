@@ -139,7 +139,7 @@ router.get("/:boardId/posts", async (req, res) => {
       createdAt: "desc",
     },
     where: {
-      boardId: boardId, // Replace 99 with the actual ID you want to retrieve
+      boardId: boardId,
     },
   });
 

@@ -17,7 +17,7 @@ main {
 }
 
 .newBoard-details h2 {
-  padding: 0px;
+  padding: 10px;
   margin: 10px;
   font-size: 35px;
   margin-bottom: 20px;
@@ -52,6 +52,11 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+body.toggled .newBoard-details {
+  background-color: rgb(16, 2, 52);
+  box-shadow: 0 0 5px 2px rgba(239, 243, 244, 0.8);
 }
 
 .newBoard-details .form-block {

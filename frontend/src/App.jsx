@@ -9,6 +9,7 @@ const INIITIAL_STATE = 0;
 const App = () => {
   const [currentBoardID, setCurrentBoardID] = useState(INIITIAL_STATE);
   const [currentBoardName, setCurrentBoardName] = useState(INIITIAL_STATE);
+  const [toggled, setToggled] = useState(false);
 
   return (
     <BrowserRouter>
@@ -19,6 +20,8 @@ const App = () => {
             <Home
               setCurrentBoardID={setCurrentBoardID}
               setCurrentBoardName={setCurrentBoardName}
+              setToggled={setToggled}
+              toggled={toggled}
             />
           }
         />

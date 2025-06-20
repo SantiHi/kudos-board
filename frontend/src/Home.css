@@ -1,10 +1,23 @@
-.Home {
+:root {
+  --dark-bgc: #1e0c19;
+}
+
+body .Home {
   text-align: center;
-  background-color: white;
+  background-color: rgb(240, 251, 235);
   min-height: 100vh;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+}
+
+body.toggled .Board {
+  background-color: var(--dark-bgc);
+}
+
+body.toggled .Home {
+  background-color: #12101c;
+  color: white;
 }
 
 header {
@@ -28,6 +41,10 @@ button {
   transition: 0.2s ease;
 }
 
+body.toggled p {
+  color: white;
+}
+
 button:hover {
   cursor: pointer;
   transform: scale(1.1);
@@ -35,14 +52,24 @@ button:hover {
   transition: 0.3s ease;
 }
 
-h1 {
-  align-self: center;
+body.toggled .search-container {
+  background-color: #251220;
+  border-radius: 10px;
 }
 
+h1 {
+  align-self: center;
+  font-size: 50px;
+  margin: 5px;
+}
 .top-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+body.toggled main {
+  background-color: var(--dark-bgc);
 }
 
 .select-drop select {
@@ -80,4 +107,47 @@ footer h4 {
   margin-right: 10px;
   font-size: large;
   font-family: "Brush Script MT", cursive;
+}
+
+/* On off togle */
+
+.toggle-btn {
+  background-color: #e0e8f6;
+  border: 1px solid #aaa;
+  border-radius: 99px;
+  width: 80px;
+  height: 46px;
+  transition: background-color 0.1s ease, border-color 0.2s ease;
+  cursor: pointer;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  right: 3%;
+}
+
+.toggle-btn .thumb {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  background-color: rgb(61, 59, 59);
+  border-radius: 99px;
+  transition: left 0.15s ease;
+  top: 50%;
+  left: 7px;
+  transform: translateX(0);
+  transform: translateY(-50%);
+}
+
+.toggle-btn {
+  background-color: rgb(121, 195, 121);
+  border-color: #aaa;
+}
+
+.toggle-btn.toggled {
+  background-color: rgb(46, 26, 84);
+  border-color: #7d237d;
+}
+
+.toggle-btn.toggled .thumb {
+  left: calc(80px - 40px);
+  background-color: rgb(244, 237, 237);
 }

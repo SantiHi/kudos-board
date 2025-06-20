@@ -15,7 +15,12 @@ const ModalOptions = Object.freeze({
 
 const INIT_RELOAD = 0;
 
-const Home = ({ setCurrentBoardID, setCurrentBoardName }) => {
+const Home = ({
+  setCurrentBoardID,
+  setCurrentBoardName,
+  setToggled,
+  toggled,
+}) => {
   const [isNewBoardModalVisible, setNewBoardModalVisibility] = useState(false);
   const [visibleBoards, setVisibleBoards] = useState([]);
   const [reload, setReload] = useState(INIT_RELOAD);
@@ -40,9 +45,19 @@ const Home = ({ setCurrentBoardID, setCurrentBoardName }) => {
     getBoards();
   }, [reload]);
 
+  useEffect(() => {
+    document.body.classList.toggle("toggled", toggled); // between light and dark mode
+  }, [toggled]);
+
   return (
     <div className="Home">
       <header>
+        <button
+          className={`toggle-btn ${toggled ? "toggled" : ""}`}
+          onClick={() => setToggled(!toggled)}
+        >
+          <div className="thumb"> </div>
+        </button>
         <h1>Kudos Board</h1>
       </header>
 
@@ -52,19 +67,12 @@ const Home = ({ setCurrentBoardID, setCurrentBoardName }) => {
           setReload={setReload}
         />
       )}
-      <main>
+      <main className={`main ${toggled ? "toggled" : ""}`}>
         <div className="top-container">
           <SearchBar
             setVisibleBoards={setVisibleBoards}
             getAllBoards={getBoards}
           />
-          {/* 
-                        <select value={category} onChange={handleDropChange}>
-                <option value={ModalOptions.CATEGORY}>Select a category</option>
-                <option value={ModalOptions.CELEBRATION}>Celebration</option>
-                <option value={ModalOptions.THANK_YOU}>Thank You</option>
-                <option value={ModalOptions.INSPIRATION}>Inspiration</option>
-              </select> */}
           <div className="select-drop">
             <select
               name="seach-form"
