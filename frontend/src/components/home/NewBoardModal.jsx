@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./NewBoardModal.css";
+import { BASE_URL } from "../../utils/reused";
 
 const ModalOptions = Object.freeze({
   CATEGORY: "select-a-category",
@@ -39,7 +40,7 @@ const NewBoardModal = ({ setNewBoardModalVisibility, setReload }) => {
 
   const addNewBoard = async () => {
     console.log(JSON.stringify(formData));
-    const response = await fetch("http://localhost:3000/boards", {
+    const response = await fetch(`${BASE_URL}/boards`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -3,7 +3,7 @@ import "./Home.css";
 import SearchBar from "./components/home/SearchBar.jsx";
 import NewBoardModal from "./components/home/NewBoardModal.jsx";
 import KudosList from "./components/home/KudosList.jsx";
-import { getAllBoards } from "./utils/reusedFunctions.js";
+import { BASE_URL } from "./utils/reused.js";
 
 const ModalOptions = Object.freeze({
   ALL: "all",
@@ -26,7 +26,7 @@ const Home = ({
   const [reload, setReload] = useState(INIT_RELOAD);
 
   const getBoards = async () => {
-    const response = await fetch("http://localhost:3000/boards");
+    const response = await fetch(`${BASE_URL}/boards`);
     const data = await response.json();
     setVisibleBoards(data);
   };
@@ -34,7 +34,7 @@ const Home = ({
   async function handleSortChange(event) {
     event.preventDefault();
     const response = await fetch(
-      `http://localhost:3000/boards/category/${event.target.value}`
+      `${BASE_URL}/boards/category/${event.target.value}`
     );
     const data = await response.json();
     setVisibleBoards(data);

@@ -1,6 +1,6 @@
 import "./KudosCard.css";
 import { useNavigate } from "react-router-dom";
-
+import { BASE_URL } from "../../utils/reused";
 import { useState } from "react";
 
 const DEFAULT_GIF = "https://i.gifer.com/4j.gif";
@@ -15,7 +15,7 @@ const KudosCard = ({
   const navigate = useNavigate();
 
   const handleDelete = async () => {
-    const response = await fetch(`http://localhost:3000/boards/${id}`, {
+    const response = await fetch(`${BASE_URL}/boards/${id}`, {
       method: "DELETE",
     });
     const data = await response.json();
