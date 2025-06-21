@@ -37,12 +37,10 @@ const NewBoardModal = ({ setNewBoardModalVisibility, setReload }) => {
     }
     event.preventDefault();
     setNewBoardModalVisibility(false);
-    console.log(formData);
     addNewBoard();
   };
 
   const addNewBoard = async () => {
-    console.log(JSON.stringify(formData));
     const response = await fetch(`${BASE_URL}/boards`, {
       method: "POST",
       headers: {
@@ -51,7 +49,6 @@ const NewBoardModal = ({ setNewBoardModalVisibility, setReload }) => {
       body: JSON.stringify(formData),
     });
     const data = await response.json();
-    console.log(data);
     setReload((self) => self + 1);
   };
 

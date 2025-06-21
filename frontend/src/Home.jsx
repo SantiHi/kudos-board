@@ -15,12 +15,7 @@ const ModalOptions = Object.freeze({
 
 const INIT_RELOAD = 0;
 
-const Home = ({
-  setCurrentBoardID,
-  setCurrentBoardName,
-  setToggled,
-  toggled,
-}) => {
+const Home = ({ setCurrentBoardName, setToggled, toggled }) => {
   const [isNewBoardModalVisible, setNewBoardModalVisibility] = useState(false);
   const [visibleBoards, setVisibleBoards] = useState([]);
   const [reload, setReload] = useState(INIT_RELOAD);
@@ -38,7 +33,6 @@ const Home = ({
     );
     const data = await response.json();
     setVisibleBoards(data);
-    console.log(data);
   }
 
   useEffect(() => {
@@ -93,7 +87,6 @@ const Home = ({
         <div className="bottom-container">
           <KudosList
             visibleBoards={visibleBoards}
-            setCurrentBoardID={setCurrentBoardID}
             setCurrentBoardName={setCurrentBoardName}
             setReload={setReload}
           />
