@@ -40,7 +40,6 @@ const Board = ({ currentBoardName, toggled, setToggled }) => {
       const response = await fetch(`${BASE_URL}/boards/${boardId}/posts`);
       const data = await response.json();
       setVisibleCards(data);
-      console.log(data);
     };
     getCards();
   }, [reload]);
@@ -73,7 +72,6 @@ const Board = ({ currentBoardName, toggled, setToggled }) => {
       {isCommentModalVisible && (
         <CommentModal
           setCommentModalVisibility={setCommentModalVisibility}
-          setReload={setReload}
           postId={postId}
         />
       )}

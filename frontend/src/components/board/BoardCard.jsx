@@ -26,7 +26,6 @@ const BoardCard = ({
       method: "PUT",
     });
     const data = await response.json();
-    console.log(data);
     setReload((self) => self + 1);
   };
 
@@ -35,12 +34,10 @@ const BoardCard = ({
       method: "DELETE",
     });
     const data = await response.json();
-    console.log(data);
     setReload((self) => self + 1);
   };
 
   const handleComment = async () => {
-    console.log("clicked!");
     setCommentModalVisibility(true);
     setPostId(id);
   };

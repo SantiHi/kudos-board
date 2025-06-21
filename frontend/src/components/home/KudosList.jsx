@@ -1,12 +1,7 @@
 import KudosCard from "./KudosCard";
 import "./KudosList.css";
 
-const KudosList = ({
-  visibleBoards,
-  setCurrentBoardID,
-  setCurrentBoardName,
-  setReload,
-}) => {
+const KudosList = ({ visibleBoards, setCurrentBoardName, setReload }) => {
   return (
     <div>
       <div className="kudos-list">
@@ -15,7 +10,6 @@ const KudosList = ({
             board={board}
             key={board.id}
             id={board.id}
-            setCurrentBoardID={setCurrentBoardID}
             setCurrentBoardName={setCurrentBoardName}
             setReload={setReload}
           />

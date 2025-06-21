@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import "./CommentModal.css";
-import { useParams } from "react-router-dom";
 import { BASE_URL } from "../../utils/reused";
 
 const DEFAULT_COMMENT = "ex: such a cool post!";
 const DEFAULT_LOAD = 0;
 
-const CommentModal = ({ setCommentModalVisibility, setReload, postId }) => {
+const CommentModal = ({ setCommentModalVisibility, postId }) => {
   const [comment, setComment] = useState("");
   const [author, setAuthor] = useState("");
   const [allComments, setAllComments] = useState([]);
@@ -81,7 +80,7 @@ const CommentModal = ({ setCommentModalVisibility, setReload, postId }) => {
               );
             })}
         </div>
-        <form name="new-board" id="bob">
+        <form name="new-board">
           <div className="form-block">
             <textarea
               name="comment"

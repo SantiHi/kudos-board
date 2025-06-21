@@ -5,13 +5,7 @@ import { useState } from "react";
 
 const DEFAULT_GIF = "https://i.gifer.com/4j.gif";
 
-const KudosCard = ({
-  board,
-  id,
-  setCurrentBoardID,
-  setCurrentBoardName,
-  setReload,
-}) => {
+const KudosCard = ({ board, id, setCurrentBoardName, setReload }) => {
   const navigate = useNavigate();
 
   const handleDelete = async () => {
@@ -19,13 +13,11 @@ const KudosCard = ({
       method: "DELETE",
     });
     const data = await response.json();
-    console.log(data);
     setReload((self) => self + 1);
   };
 
   const handleView = () => {
     navigate(`/boards/${id}`);
-    setCurrentBoardID(id);
     setCurrentBoardName(board.title);
   };
 

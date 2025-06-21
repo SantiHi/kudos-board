@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { useState } from "react";
 import "./SearchBar.css";
 import { BASE_URL } from "../../utils/reused";
@@ -11,7 +10,6 @@ const SearchBar = ({ setVisibleBoards, getAllBoards }) => {
     e.preventDefault();
     const response = await fetch(`${BASE_URL}/boards/query/${inputValue}`);
     const data = await response.json();
-    console.log(data);
     setVisibleBoards(data);
   };
 

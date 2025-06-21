@@ -50,13 +50,11 @@ const CreatePostModal = ({ setCreatePostVisibility, setReload }) => {
     }
     event.preventDefault();
     setCreatePostVisibility(false);
-    console.log(formData);
     addcreatePost();
     setReload((self) => self + 1);
   };
 
   const addcreatePost = async () => {
-    console.log(JSON.stringify(formData));
     const response = await fetch(`${BASE_URL}/boards/${boardId}`, {
       method: "POST",
       headers: {
@@ -65,7 +63,6 @@ const CreatePostModal = ({ setCreatePostVisibility, setReload }) => {
       body: JSON.stringify(formData),
     });
     const data = await response.json();
-    console.log(data);
     setReload((self) => self + 1);
   };
 
@@ -90,6 +87,7 @@ const CreatePostModal = ({ setCreatePostVisibility, setReload }) => {
           </div>
           <div className="form-block">
             <textarea
+              maxLength={50}
               name="description"
               placeholder="Post Text"
               onChange={handleChange}
