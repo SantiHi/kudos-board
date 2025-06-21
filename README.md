@@ -4,7 +4,7 @@
 
 Submitted by: **NAME**
 
-Deployed Application (**required**): [Kudos Board Deployed Site](https://kudos-board-2-u5mk.onrender.com/)
+Deployed Application (**required**): [Kudos Board Deployed Site](https://kudos-board-2-u5mk.onrender.com/)   [backup site - static site that should always be up](https://kudos-board-1-swrm.onrender.com/)
 
 ### Application Features
 
